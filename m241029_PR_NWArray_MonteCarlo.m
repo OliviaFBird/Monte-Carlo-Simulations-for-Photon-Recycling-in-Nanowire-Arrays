@@ -1,9 +1,13 @@
 tic %start tracking runtime
-%% Assumptions
+%% Key Assumptions
 %Cylinder/Wire shaped geometry 
-%Square lattice geometry 
 %Photons behave as particles and recycling can be predicted by solid angle
-%Photon emission is equally likly to occur at any point on nanowire surface
+%Photon emission is equally likly to occur at any point on nanowire surface (infinite mobility within wire)
+
+%User required inputs: independent variable range (Line 12), Experimental Absorbance and PL Data (Lines 39-43),
+%nanowire geometry parameters (Lines 51-57), radiative rate coefficient (line 61),
+%fraction of light expected to scatter radially (lines 64-65), refractive index of material (lines 67-71), 
+%Laser excitation parameters (73-76)
 
 %% Setup
 clear all
@@ -34,9 +38,9 @@ Impossible = 0; %initialize an impossible case tracker for troubleshooting
 %Import Absorbance and PL Spectra as csv
 %NOTE: Data must be in the same folder as this code to import properly
 
-Abs = importdata ("240712_InPAbs_Calculated.xlsx"); %Absorbance should be in absorbance units
-PL = importdata("240712_InP_NW_PL_FromDani.csv"); %PL spectrum should be normalized
-ExpData = importdata("240916_ExpPLandIRF.xlsx"); %Experimental IRF
+Abs = importdata (""); %Import Absorbance in absorbance units/OD
+PL = importdata(""); %Import PL spectrum. Should be normalized
+ExpData = importdata(""); %Import experimental IRF (optional)
 AbsMin = 206; %Minimum wavelength of absorbance spectrum
 AbsMax = 1111; %Maximum wavelength of absorbance spectrum
 %NOTE: This code assumes that the range of your PL spectrum is less than or
