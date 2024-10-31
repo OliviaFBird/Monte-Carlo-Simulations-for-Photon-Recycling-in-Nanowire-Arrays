@@ -102,7 +102,7 @@ for j = 1:length(VaryParam)
     
     %Multiply PL spectrum by Absortance to get overlap 
     Overlap = PLY_interp.*(1-10.^(-AbsY));
-    OverlapIntegral = 0; %trapz(Overlap); %integrate overlap spectrum. This is equal to the fraction of emitted photons which could be absorbed
+    OverlapIntegral = trapz(Overlap); %integrate overlap spectrum. This is equal to the fraction of emitted photons which could be absorbed
     %% Optional: Plot PL, abs, and overlap to ensure all data was uploaded and normalized correctly
     %Plot Abs, PL, and overlap
     %plot(AbsX,AbsY),
@@ -215,7 +215,7 @@ for j = 1:length(VaryParam)
                             end
                         else %light is not scattered 
                             r = rand;
-                            if r < OverlapIntegral %light is absorbed
+                            if r < PLAbsSideegral %light is absorbed
                                 RunArray(1,2) = RunArray (1,2) + 1;
                                 AbsE = AbsE + 1;
                             else %light is transmitted
@@ -260,7 +260,7 @@ for j = 1:length(VaryParam)
                             end
                         else %light interacts with wire 1
                             r = rand;
-                            if r < OverlapIntegral %light is absorbed
+                            if r < PLAbsSideegral %light is absorbed
                                 RunArray(1,1) = RunArray(1,1) + 1;
                                 AbsE = AbsE + 1;
                             else %light is transmitted 
@@ -337,7 +337,7 @@ for j = 1:length(VaryParam)
                             end
                         else %light is not scattered 
                             r = rand;
-                            if r < OverlapIntegral %light is absorbed
+                            if r < PLAbsSideegral %light is absorbed
                                 RunArray(1,2) = RunArray (1,2) + 1;
                                 AbsE = AbsE + 1;
                             else %light is transmitted
@@ -427,7 +427,7 @@ for j = 1:length(VaryParam)
                             end
                         else %light interacts with wire 1
                             r = rand;
-                            if r < OverlapIntegral %light is absorbed
+                            if r < PLAbsSideegral %light is absorbed
                                 RunArray(1,1) = RunArray(1,1) + 1;
                                 AbsE = AbsE + 1;
                             else %light is transmitted 
