@@ -7,7 +7,7 @@ tic %start tracking runtime
 %User required inputs: independent variable range (Line 12), Experimental Absorbance and PL Data (Lines 39-43),
 %nanowire geometry parameters (Lines 51-57), radiative rate coefficient (line 61),
 %fraction of light expected to scatter radially (lines 64-65), refractive index of material (lines 67-71), 
-%Laser excitation parameters (73-76)
+%Laser excitation parameters (73-76), how many photons to simulate at once (and thus runtime, Line 133)
 
 %% Setup
 clear all
@@ -130,8 +130,8 @@ for j = 1:length(VaryParam)
     NPhoTot = ExP*Ext/EPho; % Calculate Total number of photons in experiment
     OnePhoRate = (ExP/EPho)^(-1); %Calculate time between photons in s 
     
-    PhoBunchSize = 1E7; %how many photon movements do you want to simulate at once?
-    NPho = NPhoTot / PhoBunchSize; %total photon bunches to simulate (Change this variable to control simulation runtime. Larger bunch = faster runtime but worse signal : noise)
+    PhoBunchSize = 1E7; %how many photon movements do you want to simulate at once? (Change this variable to control simulation runtime. Larger bunch = faster runtime but worse signal : noise)
+    NPho = NPhoTot / PhoBunchSize; %total photon bunches to simulate 
     PhoRate = (EPho*PhoBunchSize)/ExP; %Calculate time between photon bunches in s 
     kPho = PhoRate^(-1);
     
